@@ -12,9 +12,11 @@ namespace CustomerService.Infrastructor
         {
             _dapperContext = dapperContext;
         }
+
         public async Task<CustomerOrder> GetCustomerOrderDetails(string userEmailId, string customerId)
         {
-                       var query = @"
+
+            var query = @"
                         SELECT TOP 1 c.FirstName, c.LastName,o.ORDERID As OrderNumber, o.OrderDate,c.HOUSENO +','+c.STREET +','+c.TOWN,+','+c.POSTCODE AS DeliveryAddres,
                         ot.PRICE AS PriceEach, p.PRODUCTNAME AS Product,ot.QUANTITY,o.DELIVERYEXPECTED
                         FROM CUSTOMERS c 
@@ -27,6 +29,7 @@ namespace CustomerService.Infrastructor
             parameters.Add("userEmailId", userEmailId, DbType.String);
             try
             {
+
                 using (var connection = _dapperContext.CreateConnection())
                 {
                     var customerOrderDetails = await connection.QueryFirstAsync<CustomerOrder>(query, parameters);
@@ -37,8 +40,6 @@ namespace CustomerService.Infrastructor
             {
                 throw;
             }
-            
-               
         }
     }
 }

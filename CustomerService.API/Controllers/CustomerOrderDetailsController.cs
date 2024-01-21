@@ -32,7 +32,7 @@ namespace CustomerService.API.Controllers
                 // log exception in db or newrelic
                 return BadRequest();
             }
-           
+
         }
     
     }

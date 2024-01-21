@@ -6,6 +6,7 @@ namespace CustomerService.API.Model
     {
         [Required]
         public string User { get; set; }
+
         [Required]
         public string CustomerId { get; set; }
 
